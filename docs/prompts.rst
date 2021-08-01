@@ -17,6 +17,9 @@ email
 github_username
     Your GitHub username.
 
+github_default_branch
+    The default branch for your GitHub repo (ex: master)
+
 project_name
     The name of your new Python package project. This is used in documentation, so spaces and any characters are fine here.
 
