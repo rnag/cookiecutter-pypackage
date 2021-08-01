@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 """Tests for `{{ cookiecutter.project_slug }}` package."""
 
 {% if cookiecutter.use_pytest == 'y' -%}

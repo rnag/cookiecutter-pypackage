@@ -26,6 +26,10 @@ BROWSER := python -c "$$BROWSER_PYSCRIPT"
 help:
 	@python -c "$$PRINT_HELP_PYSCRIPT" < $(MAKEFILE_LIST)
 
+init: ## install all dev dependencies for this project
+	pip install -e .
+	pip install -r requirements-dev.txt
+
 clean: clean-build clean-pyc clean-test ## remove all build, test, coverage and Python artifacts
 
 clean-build: ## remove build artifacts
@@ -47,12 +51,13 @@ clean-test: ## remove test and coverage artifacts
 	rm -fr htmlcov/
 	rm -fr .pytest_cache
 
-lint: ## check style with flake8
+lint: ## check style with flake8 and pylint
 	flake8 {{ cookiecutter.project_slug }} tests
+	pylint {{ cookiecutter.project_slug }} tests
 
-test: ## run tests quickly with the default Python
+test: ## run unit tests quickly with the default Python
 {%- if cookiecutter.use_pytest == 'y' %}
-	pytest -v --cov={{ cookiecutter.project_slug }} --cov-report=term-missing
+	pytest -v --cov={{ cookiecutter.project_slug }} --cov-report=term-missing tests/unit
 {%- else %}
 	python setup.py test
 {%- endif %}
@@ -60,9 +65,9 @@ test: ## run tests quickly with the default Python
 test-all: ## run tests on every Python version with tox
 	tox
 
-coverage: ## check code coverage quickly with the default Python
+coverage: ## check code coverage with unit tests quickly with the default Python
 {%- if cookiecutter.use_pytest == 'y' %}
-	coverage run --source {{ cookiecutter.project_slug }} -m pytest
+	coverage run --source {{ cookiecutter.project_slug }} -m pytest tests/unit
 {%- else %}
 	coverage run --source {{ cookiecutter.project_slug }} setup.py test
 {%- endif %}
