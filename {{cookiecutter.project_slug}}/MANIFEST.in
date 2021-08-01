@@ -6,7 +6,8 @@ include HISTORY.rst
 include LICENSE
 include README.rst
 
-recursive-include tests *
+recursive-include tests *.py
+recursive-exclude tests/integration *
 recursive-exclude * __pycache__
 recursive-exclude * *.py[co]
 
