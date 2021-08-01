@@ -1,5 +1,17 @@
-"""Top-level package for {{ cookiecutter.project_name }}."""
+"""
+{{ cookiecutter.project_short_description }}
 
-__author__ = """{{ cookiecutter.full_name }}"""
-__email__ = '{{ cookiecutter.email }}'
-__version__ = '{{ cookiecutter.version }}'
+
+Docs:
+    - https://{{ cookiecutter.project_slug | replace("_", "-") }}.readthedocs.io/en/latest/
+
+"""
+__all__ = [
+
+]
+
+import logging
+
+# Set up logging to ``/dev/null`` like a library is supposed to.
+# http://docs.python.org/3.3/howto/logging.html#configuring-logging-for-a-library
+logging.getLogger('{{ cookiecutter.project_slug }}').addHandler(logging.NullHandler())

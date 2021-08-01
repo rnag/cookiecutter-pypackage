@@ -17,13 +17,13 @@ script: tox
 # Create a new token PyPI token for your project via:
 # https://pypi.org/manage/account/token/
 # Then add it to the `PYPI_PASSWORD` environment variable in your Travis project settings:
-# https://travis-ci.com/github/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}/settings
+# https://travis-ci.com/github/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug | replace("_", "-") }}/settings
 deploy:
   provider: pypi
   distributions: sdist bdist_wheel
   user: "__token__"
   on:
     tags: true
-    repo: {{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}
+    repo: {{ cookiecutter.github_username }}/{{ cookiecutter.project_slug | replace("_", "-") }}
     python: 3.8
 {%- endif %}

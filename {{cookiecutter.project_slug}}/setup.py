@@ -1,16 +1,24 @@
 """The setup script."""
+import pathlib
 
 from setuptools import setup, find_packages
 
-with open('README.rst') as readme_file:
-    readme = readme_file.read()
 
-with open('HISTORY.rst') as history_file:
-    history = history_file.read()
+here = pathlib.Path(__file__).parent
 
-requirements = [{%- if cookiecutter.command_line_interface|lower == 'click' %}'Click>=7.0',{%- endif %} ]
+package_name = '{{ cookiecutter.project_slug }}'
+
+packages = find_packages(include=[package_name, f'{package_name}.*'])
+
+requires = [{%- if cookiecutter.command_line_interface|lower == 'click' %}'Click>=7.0',{%- endif %} ]
 
 test_requirements = [{%- if cookiecutter.use_pytest == 'y' %}'pytest-cov>=2.10.0',{%- endif %} ]
+
+about = {}
+exec((here / package_name / '__version__.py').read_text(), about)
+
+readme = (here / 'README.md').read_text()
+history = (here / 'HISTORY.rst').read_text()
 
 {%- set license_classifiers = {
     'MIT license': 'License :: OSI Approved :: MIT License',
@@ -21,9 +29,20 @@ test_requirements = [{%- if cookiecutter.use_pytest == 'y' %}'pytest-cov>=2.10.0
 } %}
 
 setup(
-    author="{{ cookiecutter.full_name.replace('\"', '\\\"') }}",
-    author_email='{{ cookiecutter.email }}',
-    python_requires='>=3.6',
+    name=about['__title__'],
+    version=about['__version__'],
+    description=about['__description__'],
+    long_description=readme + '\n\n' + history,
+    author=about['__author__'],
+    author_email=about['__author_email__'],
+    url=about['__url__'],
+    packages=packages,
+    include_package_data=True,
+    install_requires=requires,
+{%- if cookiecutter.open_source_license in license_classifiers %}
+    license=about['__license__'],
+{%- endif %}
+    keywords=['{{ cookiecutter.project_slug | replace("_", "-") }}'],
     classifiers=[
         'Development Status :: 2 - Pre-Alpha',
         'Intended Audience :: Developers',
@@ -37,26 +56,15 @@ setup(
         'Programming Language :: Python :: 3.8',
         'Programming Language :: Python :: 3.9',
 ],
-    description="{{ cookiecutter.project_short_description }}",
     {%- if 'no' not in cookiecutter.command_line_interface|lower %}
+    python_requires = '>=3.6',
     entry_points={
         'console_scripts': [
-            '{{ cookiecutter.project_slug }}={{ cookiecutter.project_slug }}.cli:main',
+            '{{ cookiecutter.project_slug | replace("_", "-") }}={{ cookiecutter.project_slug }}.cli:main',
         ],
     },
     {%- endif %}
-    install_requires=requirements,
-{%- if cookiecutter.open_source_license in license_classifiers %}
-    license="{{ cookiecutter.open_source_license }}",
-{%- endif %}
-    long_description=readme + '\n\n' + history,
-    include_package_data=True,
-    keywords='{{ cookiecutter.project_slug }}',
-    name='{{ cookiecutter.project_slug }}',
-    packages=find_packages(include=['{{ cookiecutter.project_slug }}', '{{ cookiecutter.project_slug }}.*']),
     test_suite='tests',
     tests_require=test_requirements,
-    url='https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}',
-    version='{{ cookiecutter.version }}',
-    zip_safe=False,
+    zip_safe=False
 )
