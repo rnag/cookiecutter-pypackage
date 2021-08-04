@@ -20,3 +20,12 @@ if __name__ == '__main__':
 
     if 'Not open source' == '{{ cookiecutter.open_source_license }}':
         remove_file('LICENSE')
+
+    if 'y' != '{{ cookiecutter.use_pytest|lower }}':
+        remove_file('pytest.ini')
+
+    if 'y' != '{{ cookiecutter.use_pypi_deployment_with_travis|lower }}':
+        remove_file('.travis.yml')
+
+    if 'y' != '{{ cookiecutter.add_pyup_badge|lower }}':
+        remove_file('.pyup.yml')

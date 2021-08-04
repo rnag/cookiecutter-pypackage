@@ -8,7 +8,10 @@ python:
   - 3.6
 
 # Command to install dependencies, e.g. pip install -r requirements.txt --use-mirrors
-install: pip install -U tox-travis
+#
+# Also upgrades `virtualenv` to fix a build issue (as mentioned below) for Python 3.6
+#   https://travis-ci.community/t/pip-install-cryptography-fails-on-py36/11233/4
+install: pip install -U tox-travis virtualenv
 
 # Command to run tests, e.g. python setup.py test
 script: tox

@@ -17,7 +17,7 @@ test_requirements = [{%- if cookiecutter.use_pytest == 'y' %}'pytest-cov>=2.10.0
 about = {}
 exec((here / package_name / '__version__.py').read_text(), about)
 
-readme = (here / 'README.md').read_text()
+readme = (here / 'README.rst').read_text()
 history = (here / 'HISTORY.rst').read_text()
 
 {%- set license_classifiers = {
@@ -42,6 +42,7 @@ setup(
 {%- if cookiecutter.open_source_license in license_classifiers %}
     license=about['__license__'],
 {%- endif %}
+    # TODO add more relevant keywords as needed
     keywords=['{{ cookiecutter.project_slug | replace("_", "-") }}'],
     classifiers=[
         'Development Status :: 2 - Pre-Alpha',
@@ -50,11 +51,13 @@ setup(
         '{{ license_classifiers[cookiecutter.open_source_license] }}',
 {%- endif %}
         'Natural Language :: English',
+        'Programming Language :: Python',
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8',
         'Programming Language :: Python :: 3.9',
+        'Programming Language :: Python :: 3 :: Only'
 ],
     {%- if 'no' not in cookiecutter.command_line_interface|lower %}
     python_requires = '>=3.6',
