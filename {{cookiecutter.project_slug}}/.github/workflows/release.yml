@@ -46,7 +46,7 @@ jobs:
 
       - uses: actions/setup-python@v2
         with:
-          python-version: ${{ matrix.python-versions }}
+          python-version: ${% raw %}{{ matrix.python-versions }}{% endraw %}
 
       - name: Install dependencies
         run: |
@@ -61,5 +61,5 @@ jobs:
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
           user: __token__
-          password: ${{ secrets.PYPI_API_TOKEN }}
+          password: ${% raw %}{{ secrets.PYPI_API_TOKEN }}{% endraw %}
           skip_existing: true
