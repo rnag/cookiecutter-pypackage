@@ -1,6 +1,6 @@
 {
   "full_name": "Ritvik Nag",
-  "email": "rnag@example.com",
+  "email": "rv.kvetch@gmail.com",
   "github_username": "rnag",
   "github_default_branch": "main",
   "project_name": "Python Boilerplate",
@@ -8,7 +8,7 @@
   "project_short_description": "Python Boilerplate contains all the boilerplate you need to create a Python package.",
   "version": "0.1.0",
   "use_pytest": "y",
-  "use_pypi_deployment_with_travis": "y",
+  "use_ci": ["gh-actions", null],
   "add_pyup_badge": "y",
   "command_line_interface": ["No command-line interface", "Click", "Argparse"],
   "create_author_file": "n",

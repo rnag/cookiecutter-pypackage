@@ -5,10 +5,13 @@
 
 {% if is_open_source %}
 .. image:: https://img.shields.io/pypi/v/{{ cookiecutter.project_slug | replace("_", "-") }}.svg
-        :target: https://pypi.python.org/pypi/{{ cookiecutter.project_slug | replace("_", "-") }}
+        :target: https://pypi.org/project/{{ cookiecutter.project_slug | replace("_", "-") }}
 
-.. image:: https://travis-ci.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug | replace("_", "-") }}.svg?branch={{ cookiecutter.github_default_branch }}
-        :target: https://travis-ci.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug | replace("_", "-") }}
+.. image:: https://img.shields.io/pypi/pyversions/{{ cookiecutter.project_slug | replace("_", "-") }}.svg
+        :target: https://pypi.org/project/{{ cookiecutter.project_slug | replace("_", "-") }}
+
+.. image:: https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug | replace("_", "-") }}/actions/workflows/dev.yml/badge.svg
+        :target: https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug | replace("_", "-") }}/actions/workflows/dev.yml
 
 .. image:: https://readthedocs.org/projects/{{ cookiecutter.project_slug | replace("_", "-") }}/badge/?version=latest
         :target: https://{{ cookiecutter.project_slug | replace("_", "-") }}.readthedocs.io/en/latest/?version=latest
