@@ -12,7 +12,11 @@ packages = find_packages(include=[package_name, f'{package_name}.*'])
 
 requires = [{%- if cookiecutter.command_line_interface|lower == 'click' %}'Click>=7.0',{%- endif %} ]
 
-test_requirements = [{%- if cookiecutter.use_pytest == 'y' %}'pytest-cov>=2.10.0',{%- endif %} ]
+test_requirements = [{%- if cookiecutter.use_pytest == 'y' %}
+    'pytest~=7.0.1',
+    'pytest-cov~=3.0.0',
+    'pytest-runner~=5.3.1',
+{%- endif %}]
 
 about = {}
 exec((here / package_name / '__version__.py').read_text(), about)
@@ -33,12 +37,17 @@ setup(
     version=about['__version__'],
     description=about['__description__'],
     long_description=readme + '\n\n' + history,
+    long_description_content_type='text/x-rst',
     author=about['__author__'],
     author_email=about['__author_email__'],
     url=about['__url__'],
     packages=packages,
     include_package_data=True,
     install_requires=requires,
+    project_urls={
+        'Documentation': 'https://{{ cookiecutter.project_slug | replace("_", "-") }}.readthedocs.io',
+        'Source': 'https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug | replace("_", "-") }}',
+    },
 {%- if cookiecutter.open_source_license in license_classifiers %}
     license=about['__license__'],
 {%- endif %}
