@@ -1,7 +1,7 @@
 {
-  "full_name": "Audrey M. Roy Greenfeld",
-  "email": "audreyfeldroy@example.com",
-  "github_username": "audreyfeldroy",
+  "full_name": "Ritvik Nag",
+  "email": "me@ritviknag.com",
+  "github_username": "rnag",
   "pypi_package_name": "python-boilerplate",
   "project_name": "Python Boilerplate",
   "project_slug": "{{ cookiecutter.pypi_package_name.replace('-', '_') }}",

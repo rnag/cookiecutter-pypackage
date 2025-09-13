@@ -11,6 +11,22 @@ maintainers = [
 ]
 classifiers = [
     # TODO
+    # Ref: https://pypi.org/classifiers/
+    # 'Development Status :: 5 - Production/Stable',
+    # 'Development Status :: 4 - Beta',
+    'Development Status :: 2 - Pre-Alpha',
+    'Intended Audience :: Developers',
+    'License :: OSI Approved :: MIT License',
+    'Natural Language :: English',
+    'Programming Language :: Python',
+    'Programming Language :: Python :: 3',
+    'Programming Language :: Python :: 3.10',
+    'Programming Language :: Python :: 3.11',
+    'Programming Language :: Python :: 3.12',
+    'Programming Language :: Python :: 3.13',
+    'Programming Language :: Python :: 3.14',
+    'Programming Language :: Python :: Implementation :: CPython',
+    'Topic :: Software Development',
 ]
 license = {text = "MIT"}
 dependencies = [
